@@ -1,4 +1,4 @@
 package directory.themovie.modules.adapters;
 
-public class UpComing {
+public class UpComingAdapter {
 }
