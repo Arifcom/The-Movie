@@ -9,16 +9,15 @@ import directory.themovie.modules.fragments.TopRatedFragment;
 import directory.themovie.modules.fragments.UpComingFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
-    int NumOfTabs;
+    int NumberOfTabs;
 
-    public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+    public PagerAdapter(FragmentManager fm, int NumberOfTabs) {
         super(fm);
-        this.NumOfTabs = NumOfTabs;
+        this.NumberOfTabs = NumberOfTabs;
     }
 
     @Override
     public Fragment getItem(int position) {
-
         switch (position) {
             case 0:
                 PopularFragment tab1 = new PopularFragment();
@@ -36,6 +35,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return NumOfTabs;
+        return NumberOfTabs;
     }
 }
