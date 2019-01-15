@@ -4,21 +4,18 @@
     android:background="@drawable/grid_color_selector"
     android:orientation="vertical"
     android:padding="5dp">
-
     <ImageView
         android:id="@+id/poster"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"/>
-
     <TextView
         android:id="@+id/original_title"
         android:layout_width="fill_parent"
-        android:layout_height="30sp"
+        android:layout_height="28sp"
         android:layout_margin="5dp"
         android:gravity="center"
         android:maxLines="2"
         android:ellipsize="marquee"
         android:textSize="12sp" />
-
 </LinearLayout>

@@ -63,7 +63,6 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
                     String result = new String(responseBody);
                     JSONObject responseObject = new JSONObject(result);
                     JSONArray results = responseObject.getJSONArray("results");
-
                     for (int i = 0 ; i < results.length() ; i++){
                         JSONObject popular = results.getJSONObject(i);
                         PopularModel popular_data = new PopularModel(popular);
