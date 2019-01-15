@@ -2,6 +2,7 @@ package directory.themovie.modules.loader;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
@@ -12,34 +13,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
-
 import directory.themovie.modules.models.PopularModel;
 
 public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularModel>> {
-    private ArrayList<PopularModel> mData;
-    private boolean mHasResult = false;
+    private ArrayList<PopularModel> data;
+    private boolean isHasResult = false;
 
-    private String mKumpulanKota;
-
-    public PopularAsyncTaskLoader(final Context context, String kumpulanKota) {
+    public PopularAsyncTaskLoader(final Context context) {
         super(context);
-
         onContentChanged();
-        this.mKumpulanKota = kumpulanKota;
     }
 
     @Override
     protected void onStartLoading() {
         if (takeContentChanged())
             forceLoad();
-        else if (mHasResult)
-            deliverResult(mData);
+        else if (isHasResult)
+            deliverResult(data);
     }
 
     @Override
     public void deliverResult(final ArrayList<PopularModel> data) {
-        mData = data;
-        mHasResult = true;
+        this.data = data;
+        isHasResult = true;
         super.deliverResult(data);
     }
 
@@ -47,25 +43,21 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
     protected void onReset() {
         super.onReset();
         onStopLoading();
-        if (mHasResult) {
-            onReleaseResources(mData);
-            mData = null;
-            mHasResult = false;
+        if (isHasResult) {
+            onReleaseResources(data);
+            data = null;
+            isHasResult = false;
         }
     }
 
-    private static final String API_KEY = "610587cc5d3cb7ca56756c9642308387";
-
-    // Format search kota url JAKARTA = 1642911 ,BANDUNG = 1650357, SEMARANG = 1627896
-    // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=API_KEY
+    private static final String API_KEY = "1aed4b3170533f981cf14e6acac87567";
 
     @Override
     public ArrayList<PopularModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
 
-        final ArrayList<PopularModel> weatherItemses = new ArrayList<>();
-        String url = "http://api.openweathermap.org/data/2.5/group?id=" +
-                mKumpulanKota+ "&units=metric&appid=" + API_KEY;
+        final ArrayList<PopularModel> popular_datas = new ArrayList<>();
+        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + API_KEY;
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -79,12 +71,12 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
                 try {
                     String result = new String(responseBody);
                     JSONObject responseObject = new JSONObject(result);
-                    JSONArray list = responseObject.getJSONArray("list");
+                    JSONArray results = responseObject.getJSONArray("results");
 
-                    for (int i = 0 ; i < list.length() ; i++){
-                        JSONObject weather = list.getJSONObject(i);
-                        PopularModel weatherItems = new PopularModel(weather);
-                        weatherItemses.add(weatherItems);
+                    for (int i = 0 ; i < results.length() ; i++){
+                        JSONObject popular = results.getJSONObject(i);
+                        PopularModel popular_data = new PopularModel(popular);
+                        popular_datas.add(popular_data);
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -93,15 +85,15 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                //Jika response gagal maka , do nothing
+                Toast.makeText(getContext(), "Request API failed", Toast.LENGTH_LONG ).show();
             }
         });
 
-        return weatherItemses;
+        return popular_datas;
     }
 
     protected void onReleaseResources(ArrayList<PopularModel> data) {
-        //nothing to do.
+
     }
 
 }
