@@ -16,16 +16,13 @@ import directory.themovie.R;
 import directory.themovie.modules.models.PopularModel;
 
 public class PopularAdapter extends BaseAdapter {
-
     private ArrayList<PopularModel> data = new ArrayList<>();
     private LayoutInflater object_inflater;
     private Context context;
-
     public PopularAdapter(Context context) {
         this.context = context;
         object_inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
     public void setData(ArrayList<PopularModel> items){
         data = items;
         notifyDataSetChanged();
