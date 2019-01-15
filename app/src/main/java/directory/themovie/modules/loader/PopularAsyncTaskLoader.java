@@ -1,4 +1,4 @@
-package directory.themovie.activity;
+package directory.themovie.modules.loader;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
@@ -13,15 +13,15 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-import directory.themovie.modules.models.WeatherItems;
+import directory.themovie.modules.models.PopularModel;
 
-public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> {
-    private ArrayList<WeatherItems> mData;
+public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularModel>> {
+    private ArrayList<PopularModel> mData;
     private boolean mHasResult = false;
 
     private String mKumpulanKota;
 
-    public MyAsyncTaskLoader(final Context context, String kumpulanKota) {
+    public PopularAsyncTaskLoader(final Context context, String kumpulanKota) {
         super(context);
 
         onContentChanged();
@@ -37,7 +37,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     }
 
     @Override
-    public void deliverResult(final ArrayList<WeatherItems> data) {
+    public void deliverResult(final ArrayList<PopularModel> data) {
         mData = data;
         mHasResult = true;
         super.deliverResult(data);
@@ -60,10 +60,10 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
     // http://api.openweathermap.org/data/2.5/group?id=1642911,1650357,1627896&units=metric&appid=API_KEY
 
     @Override
-    public ArrayList<WeatherItems> loadInBackground() {
+    public ArrayList<PopularModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
 
-        final ArrayList<WeatherItems> weatherItemses = new ArrayList<>();
+        final ArrayList<PopularModel> weatherItemses = new ArrayList<>();
         String url = "http://api.openweathermap.org/data/2.5/group?id=" +
                 mKumpulanKota+ "&units=metric&appid=" + API_KEY;
 
@@ -83,7 +83,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
 
                     for (int i = 0 ; i < list.length() ; i++){
                         JSONObject weather = list.getJSONObject(i);
-                        WeatherItems weatherItems = new WeatherItems(weather);
+                        PopularModel weatherItems = new PopularModel(weather);
                         weatherItemses.add(weatherItems);
                     }
                 }catch (Exception e){
@@ -100,7 +100,7 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
         return weatherItemses;
     }
 
-    protected void onReleaseResources(ArrayList<WeatherItems> data) {
+    protected void onReleaseResources(ArrayList<PopularModel> data) {
         //nothing to do.
     }
 

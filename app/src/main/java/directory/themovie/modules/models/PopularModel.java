@@ -4,13 +4,13 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 
-public class WeatherItems {
+public class PopularModel {
     private int id;
     private String nama;
     private String currentWeather;
     private String description;
     private String temperature;
-    public  WeatherItems(JSONObject object){
+    public PopularModel(JSONObject object){
         try {
             int id = object.getInt("id");
             String name = object.getString("name");

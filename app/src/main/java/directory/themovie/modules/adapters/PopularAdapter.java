@@ -10,24 +10,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import directory.themovie.R;
-import directory.themovie.modules.models.WeatherItems;
+import directory.themovie.modules.models.PopularModel;
 
-public class WeatherAdapter extends BaseAdapter {
+public class PopularAdapter extends BaseAdapter {
 
-    private ArrayList<WeatherItems> mData = new ArrayList<>();
+    private ArrayList<PopularModel> mData = new ArrayList<>();
     private LayoutInflater mInflater;
     private Context context;
 
-    public WeatherAdapter(Context context) {
+    public PopularAdapter(Context context) {
         this.context = context;
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setData(ArrayList<WeatherItems> items){
+    public void setData(ArrayList<PopularModel> items){
         mData = items;
         notifyDataSetChanged();
     }
-    public void addItem(final WeatherItems item) {
+    public void addItem(final PopularModel item) {
         mData.add(item);
         notifyDataSetChanged();
     }
@@ -48,7 +48,7 @@ public class WeatherAdapter extends BaseAdapter {
         return mData.size();
     }
     @Override
-    public WeatherItems getItem(int position) {
+    public PopularModel getItem(int position) {
         return mData.get(position);
     }
     @Override

@@ -18,17 +18,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import directory.themovie.R;
-import directory.themovie.activity.MyAsyncTaskLoader;
-import directory.themovie.modules.adapters.WeatherAdapter;
-import directory.themovie.modules.models.WeatherItems;
+import directory.themovie.modules.loader.PopularAsyncTaskLoader;
+import directory.themovie.modules.adapters.PopularAdapter;
+import directory.themovie.modules.models.PopularModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularFragment extends Fragment implements View.OnClickListener, LoaderManager.LoaderCallbacks<ArrayList<WeatherItems>> {
+public class PopularFragment extends Fragment implements View.OnClickListener, LoaderManager.LoaderCallbacks<ArrayList<PopularModel>> {
 
     ListView listView;
-    WeatherAdapter adapter;
+    PopularAdapter adapter;
     EditText editKota;
     Button btnSearch;
 
@@ -51,7 +51,7 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new WeatherAdapter(getActivity().getApplicationContext());
+        adapter = new PopularAdapter(getActivity().getApplicationContext());
         adapter.notifyDataSetChanged();
         listView = (ListView) view.findViewById(R.id.listView);
 
@@ -72,23 +72,23 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
 
     //Fungsi ini yang akan menjalankan proses myasynctaskloader
     @Override
-    public Loader<ArrayList<WeatherItems>> onCreateLoader(int id, Bundle args) {
+    public Loader<ArrayList<PopularModel>> onCreateLoader(int id, Bundle args) {
 
         String kumpulanKota = "";
         if (args != null){
             kumpulanKota = args.getString(EXTRAS_CITY);
         }
 
-        return new MyAsyncTaskLoader(getActivity().getApplicationContext(),kumpulanKota);
+        return new PopularAsyncTaskLoader(getActivity().getApplicationContext(),kumpulanKota);
     }
 
     @Override
-    public void onLoadFinished(Loader<ArrayList<WeatherItems>> loader, ArrayList<WeatherItems> data) {
+    public void onLoadFinished(Loader<ArrayList<PopularModel>> loader, ArrayList<PopularModel> data) {
         adapter.setData(data);
     }
 
     @Override
-    public void onLoaderReset(Loader<ArrayList<WeatherItems>> loader) {
+    public void onLoaderReset(Loader<ArrayList<PopularModel>> loader) {
         adapter.setData(null);
 
     }
