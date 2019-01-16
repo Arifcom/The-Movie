@@ -15,14 +15,12 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 import directory.themovie.modules.models.MovieModel;
 
-public class SearchAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieModel>> {
+public class UpComingAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieModel>> {
     private ArrayList<MovieModel> data;
     private boolean is_has_result = false;
-    public String query;
-    public SearchAsyncTaskLoader(final Context context, String query) {
+    public UpComingAsyncTaskLoader(final Context context) {
         super(context);
         onContentChanged();
-        this.query = query;
     }
     @Override
     protected void onStartLoading() {
@@ -52,7 +50,7 @@ public class SearchAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieModel>
     public ArrayList<MovieModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
         final ArrayList<MovieModel> popular_datas = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&language=en-US&query=" + query;
+        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + API_KEY;
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {

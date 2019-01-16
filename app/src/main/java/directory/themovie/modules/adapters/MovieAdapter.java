@@ -13,21 +13,21 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import directory.themovie.R;
-import directory.themovie.modules.models.PopularModel;
+import directory.themovie.modules.models.MovieModel;
 
-public class PopularAdapter extends BaseAdapter {
-    private ArrayList<PopularModel> data = new ArrayList<>();
+public class MovieAdapter extends BaseAdapter {
+    private ArrayList<MovieModel> data = new ArrayList<>();
     private LayoutInflater object_inflater;
     private Context context;
-    public PopularAdapter(Context context) {
+    public MovieAdapter(Context context) {
         this.context = context;
         object_inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-    public void setData(ArrayList<PopularModel> items){
+    public void setData(ArrayList<MovieModel> items){
         data = items;
         notifyDataSetChanged();
     }
-    public void addItem(final PopularModel item) {
+    public void addItem(final MovieModel item) {
         data.add(item);
         notifyDataSetChanged();
     }
@@ -48,7 +48,7 @@ public class PopularAdapter extends BaseAdapter {
         return data.size();
     }
     @Override
-    public PopularModel getItem(int position) {
+    public MovieModel getItem(int position) {
         return data.get(position);
     }
     @Override
@@ -60,7 +60,7 @@ public class PopularAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = object_inflater.inflate(R.layout.popular_items, null);
+            convertView = object_inflater.inflate(R.layout.movie_items, null);
             holder.textViewOriginalTitle = (TextView)convertView.findViewById(R.id.original_title);
             holder.imageViewPoster = (ImageView)convertView.findViewById(R.id.poster);
             convertView.setTag(holder);

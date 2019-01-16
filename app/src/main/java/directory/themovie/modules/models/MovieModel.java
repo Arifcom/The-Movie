@@ -2,7 +2,7 @@ package directory.themovie.modules.models;
 
 import org.json.JSONObject;
 
-public class PopularModel {
+public class MovieModel {
     private int vote_count;
     private int id;
     private boolean video;
@@ -17,7 +17,7 @@ public class PopularModel {
     private boolean adult;
     private String overview;
     private String release_date;
-    public PopularModel(JSONObject object){
+    public MovieModel(JSONObject object){
         try {
             String original_title = object.getString("original_title");
             String poster_path = object.getString("poster_path");

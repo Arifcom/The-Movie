@@ -13,10 +13,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
-import directory.themovie.modules.models.PopularModel;
+import directory.themovie.modules.models.MovieModel;
 
-public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularModel>> {
-    private ArrayList<PopularModel> data;
+public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieModel>> {
+    private ArrayList<MovieModel> data;
     private boolean is_has_result = false;
     public PopularAsyncTaskLoader(final Context context) {
         super(context);
@@ -30,7 +30,7 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
             deliverResult(data);
     }
     @Override
-    public void deliverResult(final ArrayList<PopularModel> data) {
+    public void deliverResult(final ArrayList<MovieModel> data) {
         this.data = data;
         is_has_result = true;
         super.deliverResult(data);
@@ -47,10 +47,10 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
     }
     private static final String API_KEY = "1aed4b3170533f981cf14e6acac87567";
     @Override
-    public ArrayList<PopularModel> loadInBackground() {
+    public ArrayList<MovieModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
-        final ArrayList<PopularModel> popular_datas = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + API_KEY;
+        final ArrayList<MovieModel> popular_datas = new ArrayList<>();
+        String url = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY;
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
@@ -65,7 +65,7 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
                     JSONArray results = responseObject.getJSONArray("results");
                     for (int i = 0 ; i < results.length() ; i++){
                         JSONObject popular = results.getJSONObject(i);
-                        PopularModel popular_data = new PopularModel(popular);
+                        MovieModel popular_data = new MovieModel(popular);
                         popular_datas.add(popular_data);
                     }
                 }catch (Exception e){
@@ -79,7 +79,7 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
         });
         return popular_datas;
     }
-    protected void onReleaseResources(ArrayList<PopularModel> data) {
+    protected void onReleaseResources(ArrayList<MovieModel> data) {
 
     }
 }
