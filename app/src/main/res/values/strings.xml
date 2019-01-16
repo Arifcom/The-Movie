@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">The Movie</string>
-    <string name="original_title">Original Title</string>
+    <string name="search_hint">Search Movie . . .</string>
 </resources>

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
@@ -13,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,21 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
         grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 PopularModel item = (PopularModel) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity().getApplicationContext(), "Movie original name : " +item.getOriginal_title(), Toast.LENGTH_LONG ).show();
+//                Toast.makeText(getActivity().getApplicationContext(), "Movie original name : " +item.getOriginal_title(), Toast.LENGTH_LONG ).show();
+                DetailFragment detail = new DetailFragment();
+                Bundle object_bundle = new Bundle();
+                object_bundle.putString(DetailFragment.EXTRA_ORIGINAL_TITLE, item.getOriginal_title());
+                object_bundle.putString(DetailFragment.EXTRA_POSTER, item.getPoster_path());
+                object_bundle.putString(DetailFragment.EXTRA_RELEASE_DATE, item.getRelease_date());
+                object_bundle.putString(DetailFragment.EXTRA_OVERVIEW, item.getOverview());
+                detail.setArguments(object_bundle);
+                FragmentManager fragment_manager = getFragmentManager();
+                if (fragment_manager!= null) {
+                    FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
+                    fragment_transaction.replace(R.id.popular_container, detail, DetailFragment.class.getSimpleName());
+                    fragment_transaction.addToBackStack(null);
+                    fragment_transaction.commit();
+                }
             }
         });
     }

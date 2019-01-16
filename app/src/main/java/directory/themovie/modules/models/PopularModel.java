@@ -21,8 +21,12 @@ public class PopularModel {
         try {
             String original_title = object.getString("original_title");
             String poster_path = object.getString("poster_path");
+            String release_date = object.getString("release_date");
+            String overview = object.getString("overview");
             this.original_title = original_title;
             this.poster_path = poster_path;
+            this.release_date = release_date;
+            this.overview = overview;
         }catch (Exception e){
             e.printStackTrace();
         }
