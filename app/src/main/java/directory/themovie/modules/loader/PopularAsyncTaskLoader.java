@@ -17,7 +17,7 @@ import directory.themovie.modules.models.PopularModel;
 
 public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularModel>> {
     private ArrayList<PopularModel> data;
-    private boolean isHasResult = false;
+    private boolean is_has_result = false;
     public PopularAsyncTaskLoader(final Context context) {
         super(context);
         onContentChanged();
@@ -26,23 +26,23 @@ public class PopularAsyncTaskLoader extends AsyncTaskLoader<ArrayList<PopularMod
     protected void onStartLoading() {
         if (takeContentChanged())
             forceLoad();
-        else if (isHasResult)
+        else if (is_has_result)
             deliverResult(data);
     }
     @Override
     public void deliverResult(final ArrayList<PopularModel> data) {
         this.data = data;
-        isHasResult = true;
+        is_has_result = true;
         super.deliverResult(data);
     }
     @Override
     protected void onReset() {
         super.onReset();
         onStopLoading();
-        if (isHasResult) {
+        if (is_has_result) {
             onReleaseResources(data);
             data = null;
-            isHasResult = false;
+            is_has_result = false;
         }
     }
     private static final String API_KEY = "1aed4b3170533f981cf14e6acac87567";
