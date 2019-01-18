@@ -1,6 +1,5 @@
 package directory.themovie.modules.fragments;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -27,14 +26,14 @@ import java.util.ArrayList;
 
 import directory.themovie.R;
 import directory.themovie.modules.adapters.MovieAdapter;
-import directory.themovie.modules.loader.UpComingAsyncTaskLoader;
+import directory.themovie.modules.loader.NowPlayingAsyncTaskLoader;
 import directory.themovie.modules.models.MovieModel;
 
-public class UpComingFragment extends Fragment implements View.OnClickListener, LoaderManager.LoaderCallbacks<ArrayList<MovieModel>> {
+public class NowPlayingFragment extends Fragment implements View.OnClickListener, LoaderManager.LoaderCallbacks<ArrayList<MovieModel>> {
     GridView grid_view;
     MovieAdapter adapter;
     private ProgressBar progress_bar;
-    public UpComingFragment() {
+    public NowPlayingFragment() {
 
     }
     @Override
@@ -77,7 +76,7 @@ public class UpComingFragment extends Fragment implements View.OnClickListener, 
     }
     @Override
     public Loader<ArrayList<MovieModel>> onCreateLoader(int id, Bundle args) {
-        return new UpComingAsyncTaskLoader(getActivity().getApplicationContext());
+        return new NowPlayingAsyncTaskLoader(getActivity().getApplicationContext());
     }
     @Override
     public void onLoadFinished(Loader<ArrayList<MovieModel>> loader, ArrayList<MovieModel> data) {

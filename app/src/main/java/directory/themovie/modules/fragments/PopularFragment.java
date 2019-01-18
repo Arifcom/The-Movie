@@ -1,7 +1,9 @@
 package directory.themovie.modules.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -92,7 +94,7 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_search, menu);
+        inflater.inflate(R.menu.menu, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
         final SearchView search_view = (SearchView) MenuItemCompat.getActionView(searchItem);
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -117,5 +119,13 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
                 return false;
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.setting){
+            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(mIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

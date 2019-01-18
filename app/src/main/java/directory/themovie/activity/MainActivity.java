@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Popular"));
         tabLayout.addTab(tabLayout.newTab().setText("Top Rated"));
         tabLayout.addTab(tabLayout.newTab().setText("Up Coming"));
+        tabLayout.addTab(tabLayout.newTab().setText("Now Playing"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter

@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import directory.themovie.modules.fragments.NowPlayingFragment;
 import directory.themovie.modules.fragments.PopularFragment;
 import directory.themovie.modules.fragments.TopRatedFragment;
 import directory.themovie.modules.fragments.UpComingFragment;
@@ -28,6 +29,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 UpComingFragment tab3 = new UpComingFragment();
                 return tab3;
+            case 3:
+                NowPlayingFragment tab4 = new NowPlayingFragment();
+                return tab4;
             default:
                 return null;
         }
