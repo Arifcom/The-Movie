@@ -50,7 +50,7 @@ public class NowPlayingAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieMo
     public ArrayList<MovieModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
         final ArrayList<MovieModel> popular_datas = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + API_KEY;
+        String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + API_KEY + "&language=en-US";
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {

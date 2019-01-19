@@ -50,7 +50,7 @@ public class TopRatedAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieMode
     public ArrayList<MovieModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
         final ArrayList<MovieModel> popular_datas = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + API_KEY;
+        String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + API_KEY + "&language=en-US";
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {

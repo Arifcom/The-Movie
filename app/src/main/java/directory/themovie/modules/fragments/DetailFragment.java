@@ -41,10 +41,10 @@ public class DetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        original_title = (TextView) view.findViewById(R.id.original_title);
-        poster = (ImageView) view.findViewById(R.id.poster);
-        release_date = (TextView) view.findViewById(R.id.release_date);
-        overview = (TextView) view.findViewById(R.id.overview);
+        original_title = view.findViewById(R.id.original_title);
+        poster = view.findViewById(R.id.poster);
+        release_date = view.findViewById(R.id.release_date);
+        overview = view.findViewById(R.id.overview);
     }
 
     @Override

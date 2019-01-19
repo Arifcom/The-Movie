@@ -26,7 +26,7 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 
 import directory.themovie.R;
-import directory.themovie.decoration.SpacingItemDecoration;
+import directory.themovie.modules.decoration.SpacingItemDecoration;
 import directory.themovie.modules.adapters.MovieAdapter;
 import directory.themovie.modules.loader.TopRatedAsyncTaskLoader;
 import directory.themovie.modules.models.MovieModel;
@@ -48,9 +48,9 @@ public class TopRatedFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        grid_view = (RecyclerView) view.findViewById(R.id.movie_grid);
+        grid_view = view.findViewById(R.id.movie_grid);
         grid_view.setHasFixedSize(true);
-        progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        progress_bar = view.findViewById(R.id.progress_bar);
         Bundle bundle = new Bundle();
         getLoaderManager().initLoader(0, bundle, this);
         progress_bar.setVisibility(View.VISIBLE);
