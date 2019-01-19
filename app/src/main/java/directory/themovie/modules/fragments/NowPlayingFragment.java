@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 
 import directory.themovie.R;
+import directory.themovie.decoration.SpacingItemDecoration;
 import directory.themovie.modules.adapters.MovieAdapter;
 import directory.themovie.modules.loader.NowPlayingAsyncTaskLoader;
 import directory.themovie.modules.models.MovieModel;
@@ -72,6 +73,7 @@ public class NowPlayingFragment extends Fragment implements View.OnClickListener
     }
     private void showRecyclerList(){
         grid_view.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 3));
+        grid_view.addItemDecoration(new SpacingItemDecoration(3, 10, true, 0));
         MovieAdapter listMovieAdapter = new MovieAdapter(getActivity().getApplicationContext());
         listMovieAdapter.setListMovie(list);
         grid_view.setAdapter(listMovieAdapter);
