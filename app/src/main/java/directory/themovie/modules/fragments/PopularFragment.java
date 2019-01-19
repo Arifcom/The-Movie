@@ -97,6 +97,7 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
         inflater.inflate(R.menu.menu, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
         final SearchView search_view = (SearchView) MenuItemCompat.getActionView(searchItem);
+        search_view.setQueryHint(getResources().getString(R.string.search_hint));
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

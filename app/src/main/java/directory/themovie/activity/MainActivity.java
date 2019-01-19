@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Popular"));
-        tabLayout.addTab(tabLayout.newTab().setText("Top Rated"));
-        tabLayout.addTab(tabLayout.newTab().setText("Up Coming"));
-        tabLayout.addTab(tabLayout.newTab().setText("Now Playing"));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.popular)));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.top_rated)));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.up_coming)));
+        tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.now_playing)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter

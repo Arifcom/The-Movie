@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">The Movie</string>
+    <string name="search_hint">Cari...</string>
+    <string name="popular">Terpopuler</string>
+    <string name="top_rated">Teratas</string>
+    <string name="up_coming">Akan Datang</string>
+    <string name="now_playing">Tayang Sekarang</string>
+</resources>

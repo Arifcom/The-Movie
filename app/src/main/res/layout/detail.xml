@@ -11,39 +11,39 @@
         android:orientation="vertical">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/poster"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_gravity="center_horizontal"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="165dp"
-            android:layout_height="165dp"
             app:civ_border_width="2dp"
             app:civ_border_color="#FF000000"/>
         <TextView
             android:id="@+id/original_title"
             android:layout_gravity="center_horizontal"
-            style="@style/TextContent.Black"
-            android:textSize="24sp"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:textSize="24sp"
+            style="@style/TextContent.Black"/>
         <TextView
-            style="@style/TextContent.Subtitle"
             android:text="Release Date"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            style="@style/TextContent.Subtitle"/>
         <TextView
             android:id="@+id/release_date"
-            style="@style/TextContent"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:lineSpacingMultiplier="1"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            style="@style/TextContent"/>
         <TextView
-            style="@style/TextContent.Subtitle"
             android:text="Overview"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            style="@style/TextContent.Subtitle"/>
         <TextView
             android:id="@+id/overview"
-            style="@style/TextContent"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:lineSpacingMultiplier="1"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            style="@style/TextContent"/>
     </LinearLayout>
 </ScrollView>
