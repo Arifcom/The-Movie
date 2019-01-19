@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each{
+        it.buildConfigField("String" , "TMDB_API_KEY" , ' "1aed4b3170533f981cf14e6acac87567" ')
+    }
 }
 
 dependencies {

@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+import directory.themovie.BuildConfig;
 import directory.themovie.modules.models.MovieModel;
 
 public class UpComingAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieModel>> {
@@ -45,7 +46,7 @@ public class UpComingAsyncTaskLoader extends AsyncTaskLoader<ArrayList<MovieMode
             is_has_result = false;
         }
     }
-    private static final String API_KEY = "1aed4b3170533f981cf14e6acac87567";
+    private static final String API_KEY = BuildConfig.TMDB_API_KEY;
     @Override
     public ArrayList<MovieModel> loadInBackground() {
         SyncHttpClient client = new SyncHttpClient();
