@@ -48,7 +48,7 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
         super.onViewCreated(view, savedInstanceState);
         adapter = new MovieAdapter(getActivity().getApplicationContext());
         adapter.notifyDataSetChanged();
-        grid_view = (GridView) view.findViewById(R.id.popular_grid);
+        grid_view = (GridView) view.findViewById(R.id.movie_grid);
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
         grid_view.setAdapter(adapter);
         Bundle bundle = new Bundle();
