@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,8 +21,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
@@ -29,10 +29,11 @@ import directory.themovie.R;
 import directory.themovie.modules.adapters.MovieAdapter;
 import directory.themovie.modules.loader.PopularAsyncTaskLoader;
 import directory.themovie.modules.models.MovieModel;
+import directory.themovie.modules.supports.ItemClickSupport;
 
 public class PopularFragment extends Fragment implements View.OnClickListener, LoaderManager.LoaderCallbacks<ArrayList<MovieModel>> {
-    GridView grid_view;
-    MovieAdapter adapter;
+    private RecyclerView grid_view;
+    private ArrayList<MovieModel> list = new ArrayList<>();
     private ProgressBar progress_bar;
     public PopularFragment() {
 
@@ -46,18 +47,38 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        adapter = new MovieAdapter(getActivity().getApplicationContext());
-        adapter.notifyDataSetChanged();
-        grid_view = (GridView) view.findViewById(R.id.movie_grid);
+        grid_view = (RecyclerView) view.findViewById(R.id.movie_grid);
+        grid_view.setHasFixedSize(true);
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        grid_view.setAdapter(adapter);
         Bundle bundle = new Bundle();
         getLoaderManager().initLoader(0, bundle, this);
         progress_bar.setVisibility(View.VISIBLE);
-        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                MovieModel item = (MovieModel) parent.getItemAtPosition(position);
-//                Toast.makeText(getActivity().getApplicationContext(), "Movie original name : " +item.getOriginal_title(), Toast.LENGTH_LONG ).show();
+
+    }
+    @Override
+    public Loader<ArrayList<MovieModel>> onCreateLoader(int id, Bundle args) {
+        return new PopularAsyncTaskLoader(getActivity().getApplicationContext());
+    }
+    @Override
+    public void onLoadFinished(Loader<ArrayList<MovieModel>> loader, ArrayList<MovieModel> data) {
+        list.addAll(data);
+        showRecyclerList();
+        progress_bar.setVisibility(View.GONE);
+    }
+    @Override
+    public void onLoaderReset(Loader<ArrayList<MovieModel>> loader) {
+        list.addAll(null);
+        showRecyclerList();
+    }
+    private void showRecyclerList(){
+        grid_view.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 3));
+        MovieAdapter listMovieAdapter = new MovieAdapter(getActivity().getApplicationContext());
+        listMovieAdapter.setListMovie(list);
+        grid_view.setAdapter(listMovieAdapter);
+        ItemClickSupport.addTo(grid_view).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                MovieModel item = list.get(position);
                 DetailFragment detail = new DetailFragment();
                 Bundle object_bundle = new Bundle();
                 object_bundle.putString(DetailFragment.EXTRA_ORIGINAL_TITLE, item.getOriginal_title());
@@ -74,19 +95,6 @@ public class PopularFragment extends Fragment implements View.OnClickListener, L
                 }
             }
         });
-    }
-    @Override
-    public Loader<ArrayList<MovieModel>> onCreateLoader(int id, Bundle args) {
-        return new PopularAsyncTaskLoader(getActivity().getApplicationContext());
-    }
-    @Override
-    public void onLoadFinished(Loader<ArrayList<MovieModel>> loader, ArrayList<MovieModel> data) {
-        adapter.setData(data);
-        progress_bar.setVisibility(View.GONE);
-    }
-    @Override
-    public void onLoaderReset(Loader<ArrayList<MovieModel>> loader) {
-        adapter.setData(null);
     }
     @Override
     public void onClick(View view) {

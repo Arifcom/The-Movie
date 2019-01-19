@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#f0f0f0">
-        <GridView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/movie_grid"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:columnWidth="100dp"
@@ -22,7 +22,8 @@
             android:verticalSpacing="5dp"
             android:horizontalSpacing="5dp"
             android:focusable="true"
-            android:clickable="true"/>
+            android:clickable="true"
+            tools:listitem="@layout/movie_items"/>
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"

@@ -26,7 +26,7 @@
             android:textSize="24sp"
             style="@style/TextContent.Black"/>
         <TextView
-            android:text="Release Date"
+            android:text="@string/title_release_date"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             style="@style/TextContent.Subtitle"/>
         <TextView
@@ -36,7 +36,7 @@
             android:textColor="@android:color/black"
             style="@style/TextContent"/>
         <TextView
-            android:text="Overview"
+            android:text="@string/title_overview"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             style="@style/TextContent.Subtitle"/>
         <TextView

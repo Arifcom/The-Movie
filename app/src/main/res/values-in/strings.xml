@@ -6,4 +6,6 @@
     <string name="top_rated">Teratas</string>
     <string name="up_coming">Akan Datang</string>
     <string name="now_playing">Tayang Sekarang</string>
+    <string name="title_release_date">Tanggal Rilis</string>
+    <string name="title_overview">Ikhtisar</string>
 </resources>

@@ -6,4 +6,6 @@
     <string name="top_rated">Top Rated</string>
     <string name="up_coming">Up Coming</string>
     <string name="now_playing">Now Playing</string>
+    <string name="title_release_date">Release Date</string>
+    <string name="title_overview">Overview</string>
 </resources>
