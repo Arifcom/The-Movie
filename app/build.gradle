@@ -18,6 +18,7 @@ android {
     }
     buildTypes.each{
         it.buildConfigField("String" , "TMDB_API_KEY" , ' "1aed4b3170533f981cf14e6acac87567" ')
+        it.buildConfigField("String" , "Image_TMDB" , ' "https://image.tmdb.org/t/p/" ')
     }
 }
 

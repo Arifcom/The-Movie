@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import directory.themovie.BuildConfig;
 import directory.themovie.R;
 import directory.themovie.modules.models.MovieModel;
 
@@ -42,7 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.GridViewHold
     @Override
     public void onBindViewHolder(@NonNull GridViewHolder holder, int position) {
         holder.textViewOriginalTitle.setText(getListMovie().get(position).getOriginal_title());
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w92" + getListMovie().get(position).getPoster_path()).into(holder.imageViewPoster);
+        Picasso.with(context).load(BuildConfig.Image_TMDB + "w92" + getListMovie().get(position).getPoster_path()).into(holder.imageViewPoster);
     }
 
     @Override

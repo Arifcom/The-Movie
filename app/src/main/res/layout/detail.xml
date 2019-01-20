@@ -1,49 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context="directory.themovie.modules.fragments.DetailFragment">
-    <LinearLayout
+    tools:context="directory.themovie.activity.DetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/poster"
-            android:layout_width="165dp"
-            android:layout_height="165dp"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_gravity="center_horizontal"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
-        <TextView
-            android:id="@+id/original_title"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="8dp"
-            android:textSize="24sp"
-            style="@style/TextContent.Black"/>
-        <TextView
-            android:text="@string/title_release_date"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            style="@style/TextContent.Subtitle"/>
-        <TextView
-            android:id="@+id/release_date"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:lineSpacingMultiplier="1"
-            android:textColor="@android:color/black"
-            style="@style/TextContent"/>
-        <TextView
-            android:text="@string/title_overview"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            style="@style/TextContent.Subtitle"/>
-        <TextView
-            android:id="@+id/overview"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:lineSpacingMultiplier="1"
-            android:textColor="@android:color/black"
-            style="@style/TextContent"/>
-    </LinearLayout>
-</ScrollView>
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="6dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="?attr/colorPrimary"
+        android:elevation="6dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/tab_layout"/>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/poster"
+                android:layout_width="165dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="@dimen/double_activity_vertical_margin"
+                android:layout_gravity="center_horizontal"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+            <TextView
+                android:id="@+id/original_title"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/half_activity_vertical_margin"
+                android:textSize="@dimen/original_title"
+                style="@style/TextContent.Black"/>
+            <TextView
+                android:text="@string/title_release_date"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                style="@style/TextContent.Subtitle"/>
+            <TextView
+                android:id="@+id/release_date"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:lineSpacingMultiplier="1"
+                android:textColor="@android:color/black"
+                style="@style/TextContent"/>
+            <TextView
+                android:text="@string/title_overview"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                style="@style/TextContent.Subtitle"/>
+            <TextView
+                android:id="@+id/overview"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:lineSpacingMultiplier="1"
+                android:textColor="@android:color/black"
+                style="@style/TextContent"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

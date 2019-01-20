@@ -1,12 +1,11 @@
 package directory.themovie.modules.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,8 +18,9 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 
 import directory.themovie.R;
-import directory.themovie.modules.decoration.SpacingItemDecoration;
+import directory.themovie.activity.DetailActivity;
 import directory.themovie.modules.adapters.MovieAdapter;
+import directory.themovie.modules.decoration.SpacingItemDecoration;
 import directory.themovie.modules.loader.SearchAsyncTaskLoader;
 import directory.themovie.modules.models.MovieModel;
 import directory.themovie.modules.supports.ItemClickSupport;
@@ -75,20 +75,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Lo
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 MovieModel item = list.get(position);
-                DetailFragment detail = new DetailFragment();
-                Bundle object_bundle = new Bundle();
-                object_bundle.putString(DetailFragment.EXTRA_ORIGINAL_TITLE, item.getOriginal_title());
-                object_bundle.putString(DetailFragment.EXTRA_POSTER, item.getPoster_path());
-                object_bundle.putString(DetailFragment.EXTRA_RELEASE_DATE, item.getRelease_date());
-                object_bundle.putString(DetailFragment.EXTRA_OVERVIEW, item.getOverview());
-                detail.setArguments(object_bundle);
-                FragmentManager fragment_manager = getFragmentManager();
-                if (fragment_manager!= null) {
-                    FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
-                    fragment_transaction.replace(R.id.movie_container, detail, DetailFragment.class.getSimpleName());
-                    fragment_transaction.addToBackStack(null);
-                    fragment_transaction.commit();
-                }
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(DetailActivity.EXTRA_MOVIE, item);
+                startActivity(intent);
             }
         });
     }
