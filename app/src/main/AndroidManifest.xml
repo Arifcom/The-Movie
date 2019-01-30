@@ -3,6 +3,8 @@
     package="directory.themovie">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="directory.themovie.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="directory.themovie.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +24,12 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity android:name=".activity.DetailActivity"></activity>
+        <provider
+            android:authorities="directory.themovie"
+            android:name=".provider.TheMovieProvider"
+            android:exported="true"
+            android:readPermission="directory.themovie.READ_DATABASE"
+            android:writePermission="directory.themovie.WRITE_DATABASE" />
     </application>
 
 </manifest>

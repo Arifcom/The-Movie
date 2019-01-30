@@ -8,4 +8,8 @@
     <string name="now_playing">Tayang Sekarang</string>
     <string name="title_release_date">Tanggal Rilis</string>
     <string name="title_overview">Ikhtisar</string>
+    <string name="original_title">Original Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="overview">Overview</string>
+    <string name="favorite">Faforit</string>
 </resources>
