@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import directory.themovie.R;
-import directory.themovie.adapter.FavoriteAdapter;
+import directory.themovie.modules.adapters.FavoriteAdapter;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.CONTENT_URI;
 
 public class FavoriteFragment extends Fragment {

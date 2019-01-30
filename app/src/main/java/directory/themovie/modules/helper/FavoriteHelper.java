@@ -1,4 +1,4 @@
-package directory.themovie.db;
+package directory.themovie.modules.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,14 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import directory.themovie.entity.Favorite;
+import directory.themovie.db.DatabaseHelper;
+import directory.themovie.modules.entity.Favorite;
 
 import static android.provider.BaseColumns._ID;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.TABLE_NAME;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.ORIGINAL_TITLE;
-import static directory.themovie.db.DatabaseContract.FavoriteColumns.POSTER_PATH;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.RELEASE_DATE;
-import static directory.themovie.db.DatabaseContract.FavoriteColumns.OVERVIEW;
 
 public class FavoriteHelper {
     private static String DATABASE_TABLE = TABLE_NAME;

@@ -1,7 +1,6 @@
-package directory.themovie.adapter;
+package directory.themovie.modules.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import directory.themovie.BuildConfig;
 import directory.themovie.R;
-import directory.themovie.entity.Favorite;
+import directory.themovie.modules.entity.Favorite;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewholder> {
     private Cursor listFavorite;

@@ -84,7 +84,7 @@ public class NowPlayingFragment extends Fragment implements View.OnClickListener
                 MovieModel item = list.get(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                 intent.putExtra(DetailActivity.EXTRA_MOVIE, item);
-                startActivity(intent);
+                startActivityForResult(intent, DetailActivity.REQUEST_ADD);
             }
         });
     }

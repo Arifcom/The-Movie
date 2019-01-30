@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import directory.themovie.db.FavoriteHelper;
+import directory.themovie.modules.helper.FavoriteHelper;
 
 import static directory.themovie.db.DatabaseContract.AUTHORITY;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.CONTENT_URI;

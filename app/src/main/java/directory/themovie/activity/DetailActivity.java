@@ -1,18 +1,11 @@
 package directory.themovie.activity;
 
-import android.app.FragmentManager;
 import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,9 +18,8 @@ import com.squareup.picasso.Picasso;
 
 import directory.themovie.BuildConfig;
 import directory.themovie.R;
-import directory.themovie.db.FavoriteHelper;
-import directory.themovie.entity.Favorite;
-import directory.themovie.modules.fragments.SearchFragment;
+import directory.themovie.modules.helper.FavoriteHelper;
+import directory.themovie.modules.entity.Favorite;
 import directory.themovie.modules.models.MovieModel;
 
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.CONTENT_URI;

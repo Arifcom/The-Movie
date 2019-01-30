@@ -1,14 +1,14 @@
-package directory.themovie.entity;
+package directory.themoviefavorite.modules.entity;
 
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import directory.themovie.db.DatabaseContract;
+import directory.themoviefavorite.db.DatabaseContract;
 
 import static android.provider.BaseColumns._ID;
-import static directory.themovie.db.DatabaseContract.getColumnInt;
-import static directory.themovie.db.DatabaseContract.getColumnString;
+import static directory.themoviefavorite.db.DatabaseContract.getColumnInt;
+import static directory.themoviefavorite.db.DatabaseContract.getColumnString;
 
 public class Favorite implements Parcelable {
     private int id;
@@ -91,7 +91,7 @@ public class Favorite implements Parcelable {
         this.overview = in.readString();
     }
 
-    public static final Parcelable.Creator<Favorite> CREATOR = new Parcelable.Creator<Favorite>() {
+    public static final Creator<Favorite> CREATOR = new Creator<Favorite>() {
         @Override
         public Favorite createFromParcel(Parcel source) {
             return new Favorite(source);
