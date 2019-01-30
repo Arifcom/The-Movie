@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="directory.themoviefavorite">
 
+    <uses-permission android:name="directory.themovie.READ_DATABASE"/>
+    <uses-permission android:name="directory.themovie.WRITE_DATABASE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
