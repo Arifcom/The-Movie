@@ -80,6 +80,7 @@ public class Favorite implements Parcelable {
         this.original_title = getColumnString(listFavorite, DatabaseContract.FavoriteColumns.ORIGINAL_TITLE);
         this.release_date = getColumnString(listFavorite, DatabaseContract.FavoriteColumns.RELEASE_DATE);
         this.overview = getColumnString(listFavorite, DatabaseContract.FavoriteColumns.OVERVIEW);
+        this.poster_path = getColumnString(listFavorite, DatabaseContract.FavoriteColumns.POSTER_PATH);
     }
 
     public Favorite(Parcel in) {
