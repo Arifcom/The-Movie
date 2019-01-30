@@ -1,15 +1,24 @@
 package directory.themovie.modules.fragments;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -76,5 +85,42 @@ public class FavoriteFragment extends Fragment {
     }
     private void showSnackbarMessage(String message) {
         Snackbar.make(rvFavorite, message, Snackbar.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        final SearchView search_view = (SearchView) MenuItemCompat.getActionView(searchItem);
+        search_view.setQueryHint(getResources().getString(R.string.search_hint));
+        search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                SearchFragment search = new SearchFragment();
+                Bundle object_bundle = new Bundle();
+                object_bundle.putString(SearchFragment.EXTRA_QUERY, query);
+                search.setArguments(object_bundle);
+                FragmentManager fragment_manager = getFragmentManager();
+                if (fragment_manager!= null) {
+                    FragmentTransaction fragment_transaction = fragment_manager.beginTransaction();
+                    fragment_transaction.replace(R.id.movie_container, search, SearchFragment.class.getSimpleName());
+                    fragment_transaction.addToBackStack(null);
+                    fragment_transaction.commit();
+                }
+                search_view.clearFocus();
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.setting){
+            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(mIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

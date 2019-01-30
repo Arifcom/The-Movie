@@ -32,6 +32,8 @@ import directory.themovie.modules.models.MovieModel;
 
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.CONTENT_URI;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.ORIGINAL_TITLE;
+import static directory.themovie.db.DatabaseContract.FavoriteColumns.OVERVIEW;
+import static directory.themovie.db.DatabaseContract.FavoriteColumns.POSTER_PATH;
 import static directory.themovie.db.DatabaseContract.FavoriteColumns.RELEASE_DATE;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
@@ -90,7 +92,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             ContentValues values = new ContentValues();
             MovieModel movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
             values.put(ORIGINAL_TITLE, movie.getOriginal_title());
+            values.put(POSTER_PATH, movie.getPoster_path());
             values.put(RELEASE_DATE, movie.getRelease_date());
+            values.put(OVERVIEW, movie.getOverview());
             getContentResolver().insert(CONTENT_URI, values);
             setResult(RESULT_ADD);
             item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_star_red));
